@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TrafficEase - Home</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <div class="logo">TrafficEase</div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="map.html">Traffic Map</a></li>
+        <li><a href="route.html">Route Optimizer</a></li>
+        <li><a href="alerts.html">Safety Alerts</a></li>
+        <li><a href="transport.html">Public Transport</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Your Smarter Way to Navigate the City</h1>
+    <form id="quick-search">
+      <input type="text" id="destination-quick" placeholder="Enter your destination">
+      <button type="submit">Get Started</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 TrafficEase. All rights reserved.</p>
+  </footer>
+
+  <script>
+    document.getElementById("quick-search").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const destination = document.getElementById("destination-quick").value;
+      if (destination) {
+        window.location.href = `route.html?destination=${encodeURIComponent(destination)}`;
+      }
+    });
+  </script>
+</body>
+</html>

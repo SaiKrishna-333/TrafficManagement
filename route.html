@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TrafficEase - Route Optimizer</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+  <style>
+    .route-optimizer {
+      padding: 30px;
+      max-width: 1200px;
+      margin: 0 auto 80px;
+    }
+    
+    #route-form {
+      background: linear-gradient(to right, #f8f9fa, #e9ecef);
+      padding: 25px;
+      border-radius: 15px;
+      margin-bottom: 30px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    }
+    
+    .form-row {
+      margin-bottom: 20px;
+    }
+    
+    #route-form label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #555;
+      font-size: 16px;
+    }
+    
+    #route-form input, #route-form select {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid #ddd;
+      border-radius: 25px;
+      font-size: 16px;
+      background-color: white;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s;
+    }
+    
+    #route-form input:focus, #route-form select:focus {
+      border-color: #3a7bd5;
+      box-shadow: 0 2px 8px rgba(58, 123, 213, 0.3);
+      outline: none;
+    }
+    
+    #route-form button {
+      padding: 14px 30px;
+      background: linear-gradient(90deg, #FF5F6D, #FFC371);
+      color: white;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 16px;
+      margin-top: 10px;
+      transition: all 0.3s;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    #route-form button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+    
+    #route-result {
+      margin: 30px 0;
+      padding: 25px;
+      background: linear-gradient(135deg, #e0f7fa, #b2ebf2);
+      border-radius: 15px;
+      display: none;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      animation: fadeIn 0.5s ease-out;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    #route-result h3 {
+      color: #0288d1;
+      margin-top: 0;
+    }
+    
+    #route-map {
+      height: 500px;
+      margin-top: 20px;
+      border-radius: 15px;
+      border: 8px solid white;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    }
+    
+    .mode-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 5px;
+    }
+    
+    .mode-option {
+      flex: 1;
+      min-width: 100px;
+      text-align: center;
+    }
+    
+    .mode-option label {
+      display: block;
+      padding: 12px;
+      background-color: white;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s;
+      border: 2px solid transparent;
+    }
+    
+    .mode-option input {
+      display: none;
+    }
+    
+    .mode-option input:checked + label {
+      background-color: #e3f2fd;
+      border-color: #3a7bd5;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">TrafficEase</div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="map.html">Traffic Map</a></li>
+        <li><a href="route.html">Route Optimizer</a></li>
+        <li><a href="alerts.html">Safety Alerts</a></li>
+        <li><a href="transport.html">Public Transport</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="route-optimizer">
+    <h2>Route Optimizer</h2>
+    <p>Plan your journey with real-time traffic conditions for the most efficient route.</p>
+    
+    <form id="route-form">
+      <div class="form-row">
+        <label for="start">Start Location:</label>
+        <input type="text" id="start" placeholder="Enter starting point or use current location">
+      </div>
+      <div class="form-row">
+        <label for="destination">Destination:</label>
+        <input type="text" id="destination" placeholder="Enter destination">
+      </div>
+      <div class="form-row">
+        <label>Travel Mode:</label>
+        <select id="travel-mode">
+          <option value="driving">Driving</option>
+          <option value="walking">Walking</option>
+          <option value="cycling">Cycling</option>
+          <option value="transit">Public Transit</option>
+        </select>
+      </div>
+      <button type="submit">Find Optimal Route</button>
+    </form>
+    
+    <div id="route-result"></div>
+    <div id="route-map"></div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 TrafficEase. All rights reserved.</p>
+  </footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+  <script src="route.js"></script>
+</body>
+</html>

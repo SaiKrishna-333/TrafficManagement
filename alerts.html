@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TrafficEase - Safety Alerts</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .safety-alerts {
+      padding: 30px;
+      margin-bottom: 80px;
+      max-width: 1200px;
+      margin: 0 auto 80px;
+    }
+    
+    .alert-filters {
+      background: linear-gradient(to right, #f8f9fa, #e9ecef);
+      padding: 20px;
+      border-radius: 15px;
+      margin-bottom: 25px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    }
+    
+    .alert-filters select {
+      padding: 10px 15px;
+      border-radius: 25px;
+      border: 1px solid #ddd;
+      background-color: white;
+      font-size: 15px;
+      outline: none;
+      transition: all 0.3s;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    }
+    
+    .alert-filters select:focus {
+      border-color: #3a7bd5;
+      box-shadow: 0 2px 8px rgba(58, 123, 213, 0.3);
+    }
+    
+    .alert-filters label {
+      font-weight: 600;
+      margin-right: 10px;
+      color: #555;
+    }
+    
+    #alerts-list {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .alert-item {
+      margin-bottom: 20px;
+      padding: 20px;
+      border-radius: 10px;
+      background-color: #fff;
+      border-left: 8px solid #ff9800;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease;
+    }
+    
+    .alert-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    }
+    
+    .alert-item.high {
+      border-left-color: #ff416c;
+      background: linear-gradient(to right, #fff5f5, #fff);
+    }
+    
+    .alert-item.medium {
+      border-left-color: #ff9800;
+      background: linear-gradient(to right, #fff8ef, #fff);
+    }
+    
+    .alert-item.low {
+      border-left-color: #06beb6;
+      background: linear-gradient(to right, #f0fff4, #fff);
+    }
+    
+    .alert-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    
+    .alert-time {
+      color: #777;
+      font-size: 0.9em;
+      font-style: italic;
+    }
+    
+    .alert-location {
+      font-weight: bold;
+      color: #333;
+      font-size: 1.1em;
+    }
+    
+    .alert-message {
+      margin-top: 10px;
+      line-height: 1.5;
+    }
+    
+    .alert-type-badge {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 0.85em;
+      font-weight: 600;
+      color: white;
+      background: linear-gradient(90deg, #3a7bd5, #00d2ff);
+    }
+    
+    .high .alert-type-badge {
+      background: linear-gradient(90deg, #ff416c, #ff4b2b);
+    }
+    
+    .medium .alert-type-badge {
+      background: linear-gradient(90deg, #f7b733, #fc4a1a);
+    }
+    
+    .low .alert-type-badge {
+      background: linear-gradient(90deg, #06beb6, #48b1bf);
+    }
+    
+    .subscribe-section {
+      margin-top: 40px;
+      padding: 30px;
+      background: linear-gradient(135deg, #e0f7fa, #b2ebf2);
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    .subscribe-section h3 {
+      color: #0288d1;
+      margin-top: 0;
+    }
+    
+    .subscribe-form {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+    
+    .subscribe-form input {
+      flex: 1;
+      padding: 14px 20px;
+      border: none;
+      border-radius: 25px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      font-size: 16px;
+      outline: none;
+    }
+    
+    .subscribe-form button {
+      padding: 14px 30px;
+      background: linear-gradient(90deg, #00b4db, #0083b0);
+      color: white;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      font-weight: bold;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s;
+    }
+    
+    .subscribe-form button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">TrafficEase</div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="map.html">Traffic Map</a></li>
+        <li><a href="route.html">Route Optimizer</a></li>
+        <li><a href="alerts.html">Safety Alerts</a></li>
+        <li><a href="transport.html">Public Transport</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="safety-alerts">
+    <h2>Safety Alerts</h2>
+    <p>Stay informed about traffic incidents, road closures, and hazardous conditions in your area.</p>
+    
+    <div class="alert-filters">
+      <div>
+        <label for="alert-type">Filter by type:</label>
+        <select id="alert-type">
+          <option value="all">All Alerts</option>
+          <option value="accident">Accidents</option>
+          <option value="closure">Road Closures</option>
+          <option value="construction">Construction</option>
+          <option value="weather">Weather Conditions</option>
+        </select>
+      </div>
+      
+      <div>
+        <label for="alert-severity">Filter by severity:</label>
+        <select id="alert-severity">
+          <option value="all">All Severities</option>
+          <option value="high">High</option>
+          <option value="medium">Medium</option>
+          <option value="low">Low</option>
+        </select>
+      </div>
+    </div>
+    
+    <ul id="alerts-list">
+      <!-- Alerts will be loaded dynamically -->
+    </ul>
+    
+    <div class="subscribe-section">
+      <h3>Get Alert Notifications</h3>
+      <p>Subscribe to receive real-time alerts for your area via email or text message.</p>
+      <form class="subscribe-form" id="alert-subscribe">
+        <input type="email" placeholder="Your email address" required>
+        <button type="submit">Subscribe</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 TrafficEase. All rights reserved.</p>
+  </footer>
+
+  <script src="alerts.js"></script>
+</body>
+</html>
