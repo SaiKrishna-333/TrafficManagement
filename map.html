@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TrafficEase - Traffic Map</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+  <style>
+    .map-container {
+      padding: 30px;
+      margin: 0 auto 80px;
+      max-width: 1200px;
+    }
+    
+    #map {
+      height: 600px;
+      width: 100%;
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      border: 8px solid white;
+      margin-bottom: 25px;
+    }
+    
+    .map-intro {
+      margin-bottom: 25px;
+      background: linear-gradient(to right, #f8f9fa, #e9ecef);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    }
+    
+    #traffic-info {
+      background: linear-gradient(135deg, #e0f7fa, #b2ebf2);
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      margin-top: 30px;
+    }
+    
+    #traffic-info h3 {
+      color: #0288d1;
+      margin-top: 0;
+    }
+    
+    .traffic-level {
+      display: flex;
+      margin-top: 20px;
+      gap: 15px;
+    }
+    
+    .traffic-indicator {
+      display: flex;
+      align-items: center;
+      margin-right: 15px;
+    }
+    
+    .traffic-indicator span {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      margin-right: 8px;
+    }
+    
+    .traffic-free {
+      background-color: #4CAF50;
+    }
+    
+    .traffic-moderate {
+      background-color: #FFC107;
+    }
+    
+    .traffic-heavy {
+      background-color: #FF9800;
+    }
+    
+    .traffic-severe {
+      background-color: #F44336;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">TrafficEase</div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="map.html">Traffic Map</a></li>
+        <li><a href="route.html">Route Optimizer</a></li>
+        <li><a href="alerts.html">Safety Alerts</a></li>
+        <li><a href="transport.html">Public Transport</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="map-container">
+    <h2>Real-Time Traffic Map</h2>
+    
+    <div class="map-intro">
+      <p>View current traffic conditions throughout the city. Click anywhere on the map to see detailed traffic information for that location.</p>
+    </div>
+    
+    <div id="map"></div>
+    
+    <div id="traffic-info" class="info-panel">
+      <h3>Traffic Information</h3>
+      <p>Click on the map to get traffic information for a specific location.</p>
+      
+      <div class="traffic-level">
+        <div class="traffic-indicator">
+          <span class="traffic-free"></span>
+          <p>Free flowing</p>
+        </div>
+        <div class="traffic-indicator">
+          <span class="traffic-moderate"></span>
+          <p>Moderate</p>
+        </div>
+        <div class="traffic-indicator">
+          <span class="traffic-heavy"></span>
+          <p>Heavy</p>
+        </div>
+        <div class="traffic-indicator">
+          <span class="traffic-severe"></span>
+          <p>Severe</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 TrafficEase. All rights reserved.</p>
+  </footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+  <script src="map.js"></script>
+</body>
+</html>

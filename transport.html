@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TrafficEase - Public Transport</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .public-transport {
+      padding: 40px 30px;
+      max-width: 1200px;
+      margin: 0 auto 80px;
+    }
+
+    .search-container {
+      background: linear-gradient(to right, #f8f9fa, #e9ecef);
+      padding: 25px;
+      border-radius: 15px;
+      margin-bottom: 40px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    .search-container input {
+      padding: 14px 20px;
+      width: 60%;
+      max-width: 400px;
+      border: none;
+      border-radius: 25px;
+      font-size: 16px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      margin-right: 15px;
+      outline: none;
+    }
+
+    .search-container button {
+      padding: 14px 30px;
+      background: linear-gradient(90deg, #3a7bd5, #00d2ff);
+      color: white;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      font-weight: bold;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s;
+      font-size: 16px;
+    }
+
+    .search-container button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .transport-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 25px;
+      margin-top: 30px;
+    }
+
+    .transport-card {
+      background: white;
+      border-radius: 15px;
+      padding: 25px;
+      width: 300px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .transport-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(90deg, #3a7bd5, #00d2ff);
+    }
+
+    .transport-card:nth-child(2)::before {
+      background: linear-gradient(90deg, #06beb6, #48b1bf);
+    }
+
+    .transport-card:nth-child(3)::before {
+      background: linear-gradient(90deg, #ff416c, #ff4b2b);
+    }
+
+    .transport-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .transport-card h3 {
+      margin-top: 0;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #eee;
+      font-size: 20px;
+      color: #333;
+    }
+
+    .arrival-time {
+      font-size: 32px;
+      font-weight: bold;
+      color: #3a7bd5;
+      margin: 15px 0;
+      display: inline-block;
+      padding: 5px 15px;
+      background-color: #f0f8ff;
+      border-radius: 10px;
+    }
+
+    .transport-card:nth-child(2) .arrival-time {
+      color: #06beb6;
+      background-color: #f0fff4;
+    }
+
+    .transport-card:nth-child(3) .arrival-time {
+      color: #ff416c;
+      background-color: #fff5f5;
+    }
+
+    .transport-status {
+      margin-top: 15px;
+      padding: 8px 12px;
+      border-radius: 20px;
+      display: inline-block;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .status-ontime {
+      background-color: #e8f5e9;
+      color: #4caf50;
+    }
+
+    .status-delayed {
+      background-color: #fff8e1;
+      color: #ff9800;
+    }
+
+    .next-arrivals {
+      margin-top: 15px;
+      font-size: 15px;
+      color: #666;
+    }
+
+    section h3 {
+      background: linear-gradient(90deg, #3a7bd5, #00d2ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
+      font-size: 24px;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="logo">TrafficEase</div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="map.html">Traffic Map</a></li>
+        <li><a href="route.html">Route Optimizer</a></li>
+        <li><a href="alerts.html">Safety Alerts</a></li>
+        <li><a href="transport.html">Public Transport</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="public-transport">
+    <h2>Public Transport Tracker</h2>
+    <p>Get real-time updates on nearby public transportation options and schedules.</p>
+
+    <div class="search-container">
+      <input type="text" id="stop-search" placeholder="Search for a stop or station">
+      <button id="search-btn">Find Stops</button>
+    </div>
+
+    <h3>Nearby Options</h3>
+    <div class="transport-options">
+      <div class="transport-card">
+        <h3>Bus Route 42</h3>
+        <p>Stop: Main St & 5th Ave</p>
+        <p class="arrival-time">10 min</p>
+        <p>Next arrivals: 10:15 AM, 10:30 AM, 10:45 AM</p>
+        <p>Status: On time</p>
+      </div>
+
+      <div class="transport-card">
+        <h3>Subway Blue Line</h3>
+        <p>Station: Central Plaza</p>
+        <p class="arrival-time">5 min</p>
+        <p>Next arrivals: 10:10 AM, 10:25 AM, 10:40 AM</p>
+        <p>Status: On time</p>
+      </div>
+
+      <div class="transport-card">
+        <h3>Express Train 5</h3>
+        <p>Station: Downtown Terminal</p>
+        <p class="arrival-time">15 min</p>
+        <p>Next arrivals: 10:20 AM, 10:50 AM, 11:20 AM</p>
+        <p>Status: 5 min delay</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 TrafficEase. All rights reserved.</p>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Update times every minute
+      function updateTimes() {
+        const now = new Date();
+        const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        document.querySelectorAll('.transport-card').forEach(card => {
+          // Randomly adjust minutes remaining to simulate real-time updates
+          const minutesElem = card.querySelector('.arrival-time');
+          let minutes = parseInt(minutesElem.textContent);
+          minutes = Math.max(0, minutes - 1);
+          minutesElem.textContent = minutes + " min";
+
+          if (minutes <= 2) {
+            minutesElem.style.color = "#f44336";
+          }
+        });
+      }
+
+      // Initial call and set interval
+      updateTimes();
+      setInterval(updateTimes, 60000);
+
+      // Search button functionality
+      document.getElementById('search-btn').addEventListener('click', function () {
+        const searchTerm = document.getElementById('stop-search').value.trim().toLowerCase();
+        if (searchTerm) {
+          alert(`Searching for "${searchTerm}"... This functionality would connect to a real transit API in production.`);
+        } else {
+          alert("Please enter a stop or station name to search.");
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>
